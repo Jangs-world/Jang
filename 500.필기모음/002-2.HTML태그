@@ -1,0 +1,24 @@
+[ 문자 데이터 관련 태그 ]
+1. h1~h6 : 제목
+2. p : 단락(내용 구분)
+  -> 블록태그임 (주의:다른블록요소 내부에 못 씀!)  ex) p태그 안에 h1~h6, div 등.. 불가
+3. a : 링크(Anchor:닻)
+  - href 속성 : 이동할 곳
+  - target 속성 : 창 옵션(_blank:새창)
+    (기본값은 _self 현재창)
+4. br : 줄바꿈 (break 줄을 깸)
+5. hr : 가로구분선 (horizontal 수평선)
+6. b : Bold text
+7. strong : Important text (의미-시멘틱)
+8. i : Italic text
+9. em : Emphasized text : 강조된 (의미-시멘틱)
+10. mark : Marked text (노란색 글자배경-눈에잘띔)
+11. small : Smaller text
+12. del : Deleted text
+13. ins : Inserted text
+14. sub : Subscript text : 아래첨자
+15. sup : Superscript text : 윗첨자
+
+
+18. abbr - 약자
+  - title 속성을 사용하여 원래의 뜻을 툴팁으로 띄워준다.
