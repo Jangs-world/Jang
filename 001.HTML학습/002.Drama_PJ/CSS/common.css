@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.tb1 {
+.tbl {
   /* 컨텐츠부분 - 테이블 */
 
   /* 테두리 - border:두께 종류 색상 */
@@ -37,7 +37,7 @@
 }
 
 
-.tb1 td {
+.tbl td {
   /* 글자크기 : 기본글자크기 16px */
   font-size: 18px;
   /* 줄간격: 숫자는 글자크기기준 배수 (px 사용가능) */
@@ -47,7 +47,7 @@
 }
 
 /* 드라마제목 */
-.tb1 a {
+.tbl a {
   color: #000;
   /* 글자색 */
   text-decoration: none;
@@ -58,7 +58,7 @@
 
 /* 마우스 오버시 글자색, 밑줄 */
 /* :hover는 가상클래스 */
-.tb1 a:hover {
+.tbl a:hover {
   color: #f00;
   /* 글자색 */
   text-decoration: underline;
@@ -81,7 +81,7 @@
 
 
 /* 드라마 포스터 */
-.tb1 img {
+.tbl img {
   /* 둥근테두리 */
   border-radius: 10px;
 }
