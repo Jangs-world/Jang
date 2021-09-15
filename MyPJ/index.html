@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jang's PJ</title>
+  <link rel="stylesheet" href="CSS/common.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap');
+
+    html, body, a, p, video {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background-color: #000;
+      /* 수정)미모지 배경 따면 흰색으로 교체 */
+    }
+
+    #top {
+      width: 100%;
+    }
+
+    .logo img {
+      display: block;
+      margin: 15px auto;
+      height: 50px;
+      filter: invert(100%);
+      /* 수정)이미지 색 반전 */
+    }
+
+    
+    
+
+    #text {
+      margin: 70px auto;
+      margin-bottom: 0;
+      text-align: center;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 300%;
+      color: #fff; /* 수정)글자 색 */
+      /* letter-spacing: 0.1em; */
+    }
+
+    .hello {
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    .jang {
+      font-size: 1.4em;
+    }
+
+    /* .me {
+      font-size: 20px;
+      font-weight: normal;
+    } */
+
+
+
+
+
+
+
+
+    .ready {
+      margin: 0 auto;
+      width: 640px;
+      background: url(./img/ready.mov);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 상단(로고 및 메뉴) -->
+  <div id="top">
+    <!-- 로고 -->
+    <div class="logo">
+      <a href="index.html" target="#">
+        <img src="./img/logo.png" alt="logo">
+      </a>
+    </div>
+    <!-- 메뉴 -->
+  </div>
+
+
+  <!-- 내용 -->
+  <div id="cont">
+
+    <div id="text">
+      <p class="hello">Hello, I'm <span class="jang">Jang</span></p>
+      <!-- <p class="me">Pleas click me</p> -->
+    </div>
+
+    <div class="ready">
+      <video autoplay loop>
+        <source src="./img/ready.mov" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+
+
+  <!-- 하단 -->
+
+  <div id="footer">
+
+
+
+  </div>
+
+</body>
+
+</html>
