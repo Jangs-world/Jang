@@ -80,12 +80,14 @@
             - deg는 각도의 단위(도:degree)
          */
          #trans1:hover img{
-             
+             transform: rotateY(180deg);
+             /* 박스에 마우스 오버를 줘야함 그안에 이미지는 돌던지말던징 ! */
          }
         /* 
             2. rotateX(각도deg) - X축회전
          */
          #trans2:hover img{
+             transform: rotateX(180deg);
              
          }
          /* 
@@ -121,6 +123,7 @@
                         - 는 왼쪽/윗쪽
           */
           #trans5:hover img{
+              transform: translate(-200%, 100%);
               
           }
           /* 
@@ -135,6 +138,8 @@
            }
            /* 회전축 변경하기 */
            #trans6 img{
+               /* transform-origin: right bottom; */
+               /* transform-origin: 25% 75%; */
                
                /* 
                   transform-origin: 가로값 세로값;
