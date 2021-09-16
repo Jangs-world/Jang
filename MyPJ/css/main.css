@@ -16,7 +16,7 @@ p {
 
 html,
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 html {
@@ -201,26 +201,25 @@ body {
 #i1 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-}
+  background-color: orange;
+} 
 
 #i2 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-}
+  background-color: green;
+} 
 
 #i3 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-}
+  background-color: orange;
+} 
 
 #i4 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-
+  background-color: green;  
   padding-top: 100px;
 }
 
@@ -228,14 +227,14 @@ body {
 #i5 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-}
+  background-color: orange;
+} 
 
 #i6 {
   width: 100%;
   height: 810px;
-  border: 2px solid orange;
-}
+  background-color: green;
+} 
 
 
 
