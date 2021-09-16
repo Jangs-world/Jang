@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 
 /* 초기화 */
 html,
@@ -9,25 +10,21 @@ a,
 p {
   margin: 0;
   padding: 0;
-  width: 100%;
-  background-color: #fff;
+
   /* 수정)미모지 배경 따면 흰색으로 교체 */
 }
 
 html,
 body {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
   /* overflow-x: hidden; */
 }
 
 html {
   scroll-behavior: smooth;
 }
-
-body {
-  /* height: 4000px; */
-  height: 100%;
-}
-
 
 /* ---------------------------------[ 로고 ]--------------------------------- */
 #logo {
@@ -52,9 +49,14 @@ body {
 /* ---------------------------------[ hello, icon, 미모티콘 ]--------------------------------- */
 #cont {
   position: relative;
-  margin: 100px auto;
+  /* padding-top: 100px; */
+  margin: 0px auto;
+  /* width: 950px;
+  height: 610px; */
+  margin-top: 80px;
   width: 950px;
-  height: 610px;
+  height: 100vh;
+  background-color: #fff;
 }
 
 #icon {
@@ -75,7 +77,13 @@ body {
 
 #icon img {
   display: block;
-  width: 100px;
+  transition: transform .5s;
+  transform: scale(1.0);
+}
+
+#icon div:hover img {
+  transition: transform .5s;
+  transform: scale(1.2);
 }
 
 .i1 {
@@ -85,15 +93,20 @@ body {
   z-index: 2;
 }
 
-/* .i1>a {
-    display: scroll; 
-  } */
+.i1 img {
+  width: 80px;
+  
+}
 
 .i2 {
   position: absolute;
   top: 250px;
   left: 100px;
   z-index: 2;
+}
+
+.i2 img {
+  width: 80px;
 }
 
 .i3 {
@@ -103,11 +116,19 @@ body {
   z-index: 2;
 }
 
+.i3 img {
+  width: 85px;
+}
+
 .i4 {
   position: absolute;
   top: 100px;
   right: 170px;
   z-index: 2;
+}
+
+.i4 img {
+  width: 85px;
 }
 
 .i5 {
@@ -117,11 +138,19 @@ body {
   z-index: 2;
 }
 
+.i5 img {
+  width: 160px;
+}
+
 .i6 {
   position: absolute;
   top: 400px;
   right: 170px;
   z-index: 2;
+}
+
+.i6 img {
+  width: 100px;
 }
 
 #text {
@@ -135,7 +164,7 @@ body {
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
   font-size: 300%;
-  color: #000;
+  color: rgb(65, 65, 65);
   /* 수정)글자 색 */
   /* letter-spacing: 0.1em; */
 }
@@ -160,80 +189,237 @@ body {
   z-index: 0;
   margin: 0 auto;
   width: 100%;
+  padding-top: 50px;
   /* background: url(./img/ready2.mov); */
 }
 
-.ready>img {
+.ready img {
   display: block;
   margin: 0 auto;
   /* width: 421px; */
 }
 
 
+
+
 /* ---------------------------------[ Sub pages ]--------------------------------- */
 /* ------------------------- 아이콘 클릭시 이동하는 페이지 ------------------------ */
 
 
-#sp {
+/* #sp {
   color: #000;
   font-size: 40px;
 
-}
+} */
 
-#sp::after {
+/* #sp::after {
   content: '';
   display: block;
   clear: both;
-}
+} */
 
-#sp img {
-  width: 200px;
-  height: 200px;
-  /* margin: 44px; */
+/* #sp img {
+  width: 150px;
+  height: 150px;
+  margin: 44px; 
   float: left;
-}
+} */
 
-#sp p {
+/* #sp p {
   margin-top: 100px;
-}
+} */
 
 
 #i1 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: orange;
+  background-color: lightgray;
+  font-family: 'Black Han Sans', sans-serif;
 } 
+
+/* 
+.i0_wrap {
+  position: relative;
+  padding-top: 100px;
+  width: 80%;
+  margin: 0 auto;
+  transition: margin-top .5s ease-out;
+}
+
+.mbti:hover {
+  margin-top: -50px;
+}
+
+.i0_wrap .char {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid orange;
+}
+
+
+.i0_wrap .char img {
+  width: 300px;
+  height: 300px;
+}
+
+.char img:first-child {
+  display: none;
+}
+
+.char:hover img:first-child {
+  display: inline;
+}
+
+.char:hover img:last-child {
+  display: none;
+}
+
+#i0 .intro, .isfp {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 18px;
+  height: 0px;
+  margin-top: 15px;
+}
+
+.intro {
+  position: relative;
+  border: 1px solid orange;
+  width: 300px;
+  height: 300px;
+}
+
+.isfp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#i0 .mbti:hover .isfp {
+  height: 200px;
+  transition: height .5s;
+}
+
+.isfp p {
+  padding : 10px;
+  font-size: 14px;
+  font-family: 'Black Han Sans', sans-serif;
+  text-align: left;
+}
+
+
+.intro .mbti:hover .i0_wrap{
+  transition: margin-top .5s;
+  
+} */
+
+
+.i1_wrap {
+  /* border: 2px solid orange; */
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 100px;
+}
+
+.char {
+  position: relative;
+  width: 50%;
+  /* border: 2px solid green; */
+}
+
+.char img {
+  width: 300px;
+}
+
+.char img:first-child {
+  display: none;
+}
+
+.char:hover img:first-child {
+  display: inline;
+}
+
+.char:hover img:last-child {
+  display: none;
+}
+
+.intro {
+  position: relative;
+  width: 50%;
+  /* border: 2px solid blue; */
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#i1 {
+  position: relative;
+  width: 100%;
+  height: 810px;
+  background-color: #fff;
+} 
+
+#i2, #i3, #i4, #i5, #i6 p {
+  font-family: 'Black Han Sans', sans-serif;
+  width: 100%;
+  height: 100px;
+  display: block;
+  margin: 0px auto;
+  padding-top: 200px;
+  color: darkgray;
+  text-align: center;
+  font-size: 40px;
+}
 
 #i2 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: green;
+  background-color: lightgray;
 } 
 
+
 #i3 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: orange;
+  background-color: #fff;
 } 
 
 #i4 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: green;  
-  padding-top: 100px;
+  background-color: lightgray;  
+  
 }
 
 
 #i5 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: orange;
+  background-color: #fff;
 } 
 
 #i6 {
+  position: relative;
   width: 100%;
   height: 810px;
-  background-color: green;
+  background-color: lightgray;
 } 
 
 
@@ -243,12 +429,12 @@ body {
 
 #footer {
   position: fixed;
-  height: 100px;
+  height:80px;
   bottom: 0px;
   /* left: 0; */
   width: 100%;
   z-index: 3;
-  background-color: #fff;
+  background-color: #ffffff60;
   /* 수정) 색, 불투명도 조절 */
 
   /* border-top: 1px solid #ffffff30; */
@@ -256,15 +442,22 @@ body {
 
 #footer .fb {
   position: absolute;
-  border: 1px solid rgba(161, 161, 161, 0.637);
-  width: 60px;
-  height: 60px;
-  bottom: 20px;
-  right: 20px;
+  /* border: 1px solid rgba(161, 161, 161, 0.637); */
+  /* width: 30px; */
+  /* height: 30px; */
+  bottom: 30px;
+  right: 15px;
   z-index: 4;
 }
 
-#footer .fb a {
+#footer .fb img {
+  display: block;
+  margin: 0 auto;
+  width: 45px;
+  height: 40px;
+}
+
+/* #footer .fb a {
   display: block;
   font-family: 'Ubuntu', sans-serif;
   color: rgba(0, 0, 0, 0.637);
@@ -272,4 +465,4 @@ body {
   text-align: center;
   text-decoration: none;
   line-height: 60px;
-}
+} */
