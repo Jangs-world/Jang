@@ -1,0 +1,399 @@
+<?
+include "main_top.html";
+
+include "lib/dbcon.php";
+
+
+$today = date("Y-m-d");
+//$today = "2020-11-14";
+$ipaddr = $_SERVER["REMOTE_ADDR"];
+
+$sql = "select * from tb_counter ";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+
+$count = 1;
+
+//Check Mobile
+$mAgent = array("iPhone","iPod","Android","Blackberry", 
+    "Opera Mini", "Windows ce", "Nokia", "sony" );
+$chkMobile = false;
+for($i=0; $i<sizeof($mAgent); $i++){
+    if(stripos( $_SERVER['HTTP_USER_AGENT'], $mAgent[$i] )){
+        $chkMobile = true;
+        break;
+    }
+}
+
+if($chkMobile) {
+$device = "mobile";
+} else {
+$device = "pc";
+}
+
+$sql_1 = "select * from tb_counter where ipAddr='$ipaddr'";
+$result_1 = $conn -> query($sql_1);
+$numrow_1 = mysqli_num_rows($result_1);
+$row_1 = mysqli_fetch_array($result_1);
+
+$sql_daily_count = "select count from tb_counter_daily where date = '$today'";
+$result_daily_count = $conn -> query($sql_daily_count);
+$numrow_daily_count = mysqli_num_rows($result_daily_count);
+$row_daily_count = mysqli_fetch_array($result_daily_count);
+
+
+if($numrow_1 == 0){
+$sql_insert = "insert into tb_counter(first_date, lately_date, count, ipAddr, device) values('$today', '$today', '$count', '$ipaddr', '$device')";
+$conn -> query($sql_insert);
+	if($numrow_daily_count == 0){
+		$sql_add_today = "insert into tb_counter_daily(date, count) values('$today', '1')";
+		$conn -> query($sql_add_today);
+	}else{
+		$addcount = $row_daily_count['count'];
+		$addcount = $addcount+1;
+		$sql_add_count = "update tb_counter_daily set count = '$addcount'";
+		$conn -> query($sql_add_count);	
+	}
+
+}elseif($numrow_1 >=1 && $row_1['lately_date'] != $today){
+$countadd = $row_1['count'];
+$countadd = $countadd+1;
+$sql_update = "update tb_counter set count = '$countadd', lately_date = '$today' where ipAddr = '$ipaddr'";
+$conn -> query($sql_update);
+
+	if($numrow_daily_count == 0){
+		$sql_add_today = "insert into tb_counter_daily(date, count) values('$today', '1')";
+		$conn -> query($sql_add_today);
+	}else{
+		$addcount = $row_daily_count['count'];
+		$addcount = $addcount+1;
+		$sql_add_count = "update tb_counter_daily set count = '$addcount'";
+		$conn -> query($sql_add_count);	
+	}
+}else{
+	echo "";
+}
+
+
+$sql = "select * from tb_notice order by idx asc";
+$result = mysqli_query($conn, $sql);
+?>
+
+			
+		<div id="contents">
+		<div id="container">
+		<main role="main">
+
+
+		<div id="side_nav" class="side_nav">
+			<ul class="side_list">
+				<li class="on">
+					<a class="dot"><span class="tit">홈</span></a>
+				</li>
+				<li><a class="dot"><span class="tit">아현정</span></a></li>
+				<li><a class="dot"><span class="tit">한옥웨딩</span></a></li>
+				<li><a class="dot"><span class="tit">한정식</span></a></li>
+				<li><a class="dot"><span class="tit">행사</span></a></li>
+				<li><a class="dot"><span class="tit">문의하기</span></a></li>
+			</ul>
+			<span class="line"></span>
+		</div>
+
+		<button type="button" class="scroll_btn top_btn"></button>
+		<button type="button" class="scroll_btn down_btn"></button>
+
+
+		<div id="fullpage">
+			<section class="section section01">
+				<div class="slide_wrap">
+					<div class="main_slide">
+						<div class="item v01">
+							<div class="img"></div>
+							<div class="bg_color"></div>
+							<div class="text main_tit">
+								<p>A Hyun Jeong,<br><span>Korea traditional house wedding</span></p>
+							</div> 
+						</div>
+						<div class="item v02">
+							<div class="img"></div>
+							<div class="bg_color"></div>
+							<div class="text main_tit">
+								<p>한번뿐인 인생의 시작을, <br><span>한폭의 그림같은, 기품있는 전통한옥에서 프라이빗 웨딩을!</span></p>
+							</div>
+						</div>
+						<div class="item v03">
+							<div class="img"></div>
+							<div class="bg_color"></div>
+							<div class="text main_tit">
+								<p>한옥의 우아한 분위기와<br> 고즈넉한 정원에서, <br><span>웨딩파티와 연회를 즐기실 수 있습니다.</span></p>
+							</div>
+						</div>
+						<div class="item v04">
+							<div class="img"></div>
+							<div class="bg_color"></div>
+							<div class="text main_tit">
+								<p>도심 한가운데<br> 위치한 아현정 한옥웨딩!<br>
+									<span>여러분의 귀한 시간을 특별한 공간에서 행복을 만들어보세요!</span>
+								</p>
+							</div>
+						</div>
+						<div class="item v05">
+							<div class="img"></div>
+							<div class="bg_color"></div>
+							<div class="text main_tit">
+								<p>순간을 행복으로, <br><span>특별한 공간에서 귀한시간을 만들어보세요!</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="slide_navigation">
+						<button type="button" class="arrow prev"></button>
+						<button type="button" class="arrow next"></button>
+					</div>
+				</div>
+			</section>
+
+
+			<section class="section section02">
+				<div class="center_box">
+					<div class="center con-width1">
+						<div class="txt_area">
+							<h1 class="h1 type1">about us</h1>
+							<p class="main_tit tit1">
+								아 현 정 <!-- <img src="images/main/main_about_logo.png" alt=""> -->
+							</p>
+							<!-- <p class="main_txt txt1">
+								어디선가 아련히 들려오는 소리가 있습니다.<br>
+								부드러움이 느껴지는 두 현의 울림이 오후의 햇살이<br>
+								전해주는 따스함보다 더 설레임으로 다가옵니다.<br>
+								환한 웃음과 눈빛에 모여드는<br> 
+								고귀한 <span>아 현 정.</span>
+							
+							</p> -->
+							<div class="more_btn">
+								<a href="about1.html">more</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section03">
+				<div class="center_box">
+					<div class="center con-width1">
+
+						<div class="txt_area">
+							<h1 class="h1 type1">한옥웨딩</h1>
+							<p class="main_tit tit1">
+								한국 전통 가옥 웨딩
+							</p>
+							<p class="main_txt txt1">
+								한옥의 우아한 분위기와 고즈넉한 정원에서<br>
+								웨딩파티와 연회를 즐기실 수 있습니다. 
+							</p>
+							<div class="more_btn">
+								<a href="house_wedding.html">more</a>
+							</div>
+
+						</div>
+
+						<!-- slider -->
+						<div class="t_wedding_slider_warp">
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<img src="images/main/t_wedding_slider_img1.jpg" alt="">
+										<p>으뜸홀
+										<span>현대적이고 고급스러운 느낌의 으뜸홀는 예식을 할 수 있는 공간입니다.</span>
+										</p>
+									</div>
+									<div class="swiper-slide">
+										<img src="images/main/t_wedding_slider_img2.jpg" alt="">
+										<p>신부대기실
+										<span>행복한순간, 신부를 위한 특별한 공간</span>
+										</p>
+									</div>
+									<div class="swiper-slide">
+										<img src="images/main/t_wedding_slider_img3.jpg" alt="">
+										<p>가람채
+										<span>전통 한옥의 고풍스러운 폐백실</span>
+										</p>
+									</div>
+									<div class="swiper-slide">
+										<img src="images/main/t_wedding_slider_img4.jpg" alt="">
+										<p>아람채
+										<span>신랑신부님과 양가혼주님들을 위한 식사공간</span>
+										</p>
+									</div>
+									<div class="swiper-slide">
+										<img src="images/main/t_wedding_slider_img5.jpg" alt="">
+										<p>가든웨딩
+										<span>우아한 분위기와 고즈넉한 정원에서의 야외웨딩</span>
+										</p>
+									</div>
+								</div>
+
+								<div class="swiper-pagination"></div>
+
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<section class="section section04">
+
+				<div class="center_box">
+					<div class="center con-width1">
+						<h1 class="h1 type1">한정식</h1>
+						<p class="main_tit tit1">아현정 한정식</p>
+						<p class="main_txt txt1">
+							귀한 모임을 가장 특별하게! 고즈넉한 분위기! 고품격 식사!<br>
+							<span>웨딩, 돌잔치, 상견례, 회갑연, 소규모 일반행사 등</span><br>
+							가장 좋은 재료로 고객님의 입을 사로 잡을 일품요리로<br>
+							여러분을 초대합니다.
+						</p>
+						<div class="more_btn"> 
+							<a href="korean_food.html">more</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section05">
+				<div class="center_box">
+					<div class="center con-width1">
+						<div class="txt_area">
+							<h1 class="h1 type1">행사</h1>
+							<p class="main_tit tit1">
+								연회장
+							</p>
+							<!-- <p class="main_txt txt1"></p> -->
+						</div>
+						<div class="banque_list">
+							<ul>
+								<li class="banque_list_img">
+									<a href="banquet1.html">
+										<img src="images/main/main_banque_list_img1.jpg" alt="럭셔리 연회장">
+									</a>
+								</li>
+								<li class="banque_list_tit">럭셔리 연회장</li>
+								<li class="banque_list_tex">예식연회, 돌잔치, 각종 소규모 행사를 위한 아현정만의 연회장에서 소중한 사람들과 잊지 못할 추억을 만들어보세요</li>
+							</ul>
+							<ul>
+								<li class="banque_list_img">
+									<a href="banquet1.html">
+										<img src="images/main/main_banque_list_img2.jpg" alt="스페셜웨딩">
+									</a>
+								</li>
+								<li class="banque_list_tit">스페셜한 한정식</li>
+								<li class="banque_list_tex">아현정은 가장 좋은 재료와 품격있는 한정식으로 고객님의 입맛을 사로잡을 일품요리를 선사합니다.</li>
+							</ul>
+							<ul>
+								<li class="banque_list_img">
+									<a href="banquet1.html">
+										<img src="images/main/main_banque_list_img3.jpg" alt="고풍스러운 인테리어">
+									</a>
+								</li>
+								<li class="banque_list_tit">고풍스러운 인테리어</li>
+								<li class="banque_list_tex">한옥의 우아한 분위기와 고즈넉한 정원 등 고풍스러운 인테리어로 아현정만의 특별한 분위기를 선사합니다.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section06">
+				<div class="center_box">
+					<div class="center con-width1">
+						<div class="txt_area">
+							<h1 class="h1 type1">Notice</h1>
+							<p class="main_tit tit1">
+								공지사항
+							</p>
+							<!-- <p class="main_txt txt1"></p> -->
+
+
+							<div class="comm_notice">
+							<?while($row=mysqli_fetch_array($result)){?>
+								<ul>
+									<li class="notice_tit">
+										<a href="notice_detail.php?idx=<?=$row['idx']?>">
+											<?=$row['n_title']?>
+										</a>
+									</li>
+									<li class="notice_date"><?$str=substr($row['n_regDate'],0,10); echo $str;?></li>
+								</ul>
+								<?}?>
+<!-- 								<ul> -->
+<!-- 									<li class="notice_tit"> -->
+<!-- 										<a href="notice_detail.html"> -->
+<!-- 											아현정의 새로운 메뉴입니다. -->
+<!-- 										</a> -->
+<!-- 									</li> -->
+<!-- 									<li class="notice_date">2020 - 12 - 03</li> -->
+<!-- 								</ul> -->
+<!-- 								<ul> -->
+<!-- 									<li class="notice_tit"> -->
+<!-- 										<a href="notice_detail.html"> -->
+<!-- 											공지사항입니다. -->
+<!-- 										</a> -->
+<!-- 									</li> -->
+<!-- 									<li class="notice_date">2020 - 12 - 03</li> -->
+<!-- 								</ul> -->
+								<div class="comm_notice_btn">
+									<a href="notice.php">more<img src="images/main/main_icon_arrow.png" alt=""></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section07 fp-auto-height">
+				<footer>
+					<div class="footer_wrap">
+						<div class="inner con-width3">
+							<div class="info txt1">
+								<p class="addr">대구광역시 수성구 동대구로 194 - 7(황금동)</p><br>
+								<ul class="tel">
+									<li>TEL  053) 766 - 2100</li>
+									<li>FAX  053) 766 - 2109</li>
+									<li>E-MAIL bansunyo@gmail.com</li>
+								</ul>
+								<p class="copy">Copyrightⓒ 아현정 All Rights Reseved.</p>
+							</div>
+							<div class="privacy txt1">
+								<ul>
+									<li>
+										<a href="agree.html">이용약관</a>
+									</li>
+									<li>
+										<a href="privacy.html">개인정보처리방침</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</section>
+	    </div> 
+
+	    <!-- fullpage -->
+
+
+		<div class="page_top">
+			<button type="button" id="top_btn">TOP</button>
+		</div>
+
+
+		</main>
+		</div>
+		</div>
+
+<?
+include "main_bottom.html";
+?>
