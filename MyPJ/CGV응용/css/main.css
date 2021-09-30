@@ -1,0 +1,119 @@
+@charset "utf-8";
+/* Netflix-intro 페이지 [intro.css] */
+
+@import url(reset.css);
+
+
+
+body {
+    background-color: #000;
+}
+
+.part {
+    width: 1200px;
+    margin: 0 auto;
+    outline: 3px solid orange;
+}
+
+/* ************ 상단 [로고,전체메뉴] ************ */
+
+#top {
+    position: relative;
+    height: 200px;
+    /* background-color: #fff;  */
+}
+
+
+.logo {
+    /* 로고 이미지 크기 */
+    width: 120px;
+    padding-top: 20px;
+}
+
+/* ul::after, ol::after{
+    content: '';
+    display: block;
+    clear: both;
+  } */
+
+#gnb:hover #smenu li{
+    width: 600px;
+    margin-left: -240px;
+    
+}
+
+
+/* #smenu li {
+    float: left;
+    
+} */
+
+
+#smenu a {
+    color: #ffffff90;
+    font-size: 1.5em;
+}
+
+
+#nav {
+    position: relative;
+    /* #gnb의 부모 */
+}
+
+
+#gnb {
+    position: absolute;
+    /* #nav의 자식 */
+    left: 50%;
+    top: 50%;
+    /* transform: translate(-50%, -50%); */
+    
+}
+
+
+.logo::before {
+    content: '';
+    /* display: block; */
+    position: absolute;
+    top: 140px;
+    width: 100%;
+    height: 0; 
+    background-color: rgba(56, 56, 56, 0.5);
+    transition: height .6s ease-out;
+    border-radius: 5px;
+  } 
+
+.logo:hover::before {
+    height: 60px;
+    border-radius: 5px;
+}
+
+/* 서브메뉴 */
+#gnb #smenu li {
+    position: absolute;
+    top: 140px;
+    
+    width: 100%;
+    background-color: rgba(56, 56, 56, 0.5);
+    height: 0;
+    overflow: hidden;
+    border-radius: 5px;
+
+    /* 트랜지션: 속시이지 */
+    transition: height .6s ease-out;
+  }
+
+#gnb:hover #smenu li {
+    height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
