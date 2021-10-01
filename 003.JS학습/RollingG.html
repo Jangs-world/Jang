@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RollingG</title>
   <style>
-    html, body {
+    html,
+    body {
       padding: 0;
       margin: 0;
       height: 100%;
@@ -41,15 +43,39 @@
       vertical-align: -79px;
       /* 인라인요소간 세로위치정렬 */
     }
+
+    /* 이미지텍스트 출력박스 */
+    .imgtxt {
+      text-align: center;
+      color: red;
+      text-shadow: 1p 1p 1p #777;
+    }
   </style>
 
   <script>
+    //////// 전역변수구역 ////////
+    // 1. 이미지번호
+    var num = 1; // 첫번째 이미지 번호를 기억시킨다!
+    // 2. 이미지 설명 배열변수
+    var txt = [
+      "노랑잉꼬가 먹이를 꼭꼭 찍어먹어요~",
+      "분홍장미가 머리칼을 너풀너풀 날려요~",
+      "백조같은 거위가 뚱하니 바라보아요~",
+      "바이킹이 너무 어지러워 토가 나와요~",
+      "눈사람이 가짜인데 진짜같아보여요~",
+      "이 양은 보통양이 아니고 복제양 돌리예요~",
+      "잉꼬 한쌍이 영화를 찍어요~"
+    ];
+
+
+
+
     // 로드구역 : html태그가 모두 그려진 후 실행구역
     // -> DOMContentLoaded (비교: load이벤트)
     // 이벤트연결 JS내장함수
     // -> addEventListener(이벤트명,함수)
     // 전체창은 window
-    window.addEventListener("DOMContentLoaded",function(){
+    window.addEventListener("DOMContentLoaded", function () {
       // 로딩확인
       console.log("로딩완료!");
 
@@ -59,33 +85,75 @@
       // 이벤트 대상선정
       // 이동버튼: .btn -> 2개
       var btn = document.querySelectorAll(".btn");
-      console.log("버튼확인: " + btn.length);
+      // console.log("버튼확인: " + btn.length);
 
       // 오른쪽버튼 -> 두번째 컬렉션[1] -> 컬렉션은 배열아님
       // btn.item(1)
-      btn[1].onclick = function(){
+      btn[1].onclick = function () {
         // 1. 호출함수
         console.log("나,오른쪽!");
-        // 2. 변경대상 : #mbox img
-        var tg = document.querySelector("#mbox img");
-        // 3. 변경내용 : 대상이미지의 src속성을 변경
+       
+        // 2. 이미지 전역변수 읽어와서 변경하기
+        // 전역변수 num 1씩 증가하기
+        num++;
+        if (num > 7) num = 1;
+        // 한계값 7초과 처음번호로 변경하기!
+        console.log("전역변수num: " + num);
         // 변경규칙 : 현재이미지 번호 + 1 (단, 7번이후는 1번으로)
-        tg.src = "./images/img2.jpg";
-      };//////////// click함수 //////////////
-      //////////////////////////////////////
+        // 3. 변경함수 호출
+        chgImg();
 
+      }; //////////// click함수 //////////////
+      //////////////////////////////////////
+      
       // 왼쪽버튼 -> 첫번째 컬렉션[0] -> 컬렉션은 배열아님
       // btn.item(0)
-      btn[0].onclick = function(){
+      btn[0].onclick = function () {
         // 1. 호출함수
         console.log("나,왼쪽!");
-      };//////////// click함수 //////////////
+        // 2. 이미지 전역변수 읽어와서 변경하기
+        // 전역변수 num 1씩 감소하기
+        num--;
+        if (num < 1) num = 7;
+        // 한계값 1미만이면 끝번호로 변경하기!
+        console.log("전역변수num: " + num);
+        // 3. 변경함수 호출
+        chgImg();
+      }; //////////// click함수 //////////////
       //////////////////////////////////////
+      
+      ////////// 공통 이미지 변경대상 : #mbox img ////////////
+      var tg = document.querySelector("#mbox img");
+      // 한번만 변수에 할당하여 재사용한다!
+      // 공통 이미지 텍스트 변경대상 : .imgtxt
+      var itxt = document.querySelector(".imgtxt");
+
+      /* /////////////////////////////////////////
+          함수명 : chgImg
+          기능 : 이미지의 src를 변경한다!
+          -> 할당형 익명함수 !
+      */ /////////////////////////////////////////
+      var chgImg = function () {
+        //호출확인 !
+        console.log("이미지변경함수!");
+
+        // 1. 변경내용 : 대상이미지의 src속성을 변경
+        // 변경규칙 : 현재이미지 번호 + 1 (단, 7번이후는 1번으로)
+        tg.src = "./images/img" + num + ".jpg";
+        // 2. 이미지텍스트 변경하기
+        itxt.innerText = txt[num-1];
+        // 대상 : .imgtxt -> itxt변수에 담김!
+        // 변경할 내용은 txt 배열변수에 담김!
+        // 배열번호는 이미지번호인 num보다 1작다!
+        // txt[num-1] -> 해당배열번호임!
+      } ///////////////// chgImg 함수 ///////////////
+      //////////////////////////////////////////
 
     }); //////////// 로드구역 ///////////////
     ////////////////////////////////////////
   </script>
 </head>
+
 <body>
   <!-- 갤러리 부모박스 -->
   <div id="wrap">
@@ -107,6 +175,10 @@
       <img src="./images/right_btn.png" alt="오른쪽버튼">
     </a>
   </div>
-  
+
+  <!-- 이미지별 설명 텍스트 출력박스 -->
+  <h2 class="imgtxt">
+    노랑 잉꼬가 먹이를 꼭꼭 찍어먹어요~
+  </h2>
 </body>
 </html>
