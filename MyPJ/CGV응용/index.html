@@ -6,12 +6,104 @@
   <title>Netflix-index</title>
   <link rel="stylesheet" href="./css/main.css">
   <script>
-
-
-
+    function video(cont) {
+      document.getElementById("vid").src = "https://www.youtube.com/embed/" + cont + "?autoplay=1&loop=1&playlist=" + cont;
+    }
   </script>
 </head>
+
+
+
 <body>
+  <!-- ---------- 상단 [로고, 메뉴] ---------- -->
+  <header id="top" class="part">
+
+    <!-- 로고 이미지 -->
+    <!-- <h1>
+      <a href="#">
+        <img class="logo" src="./image/N.png" alt="로고 이미지">
+      </a>
+    </h1> -->
+
+    <!-- 메뉴 -->
+    <div id="nav">
+      <ul id="gnb"><a href="#"><img class="logo" src="./image/N.png" alt="로고 이미지"></a>
+        <li>
+          <ol id="smenu">
+            <li>
+              <a href="#">홈</a>
+            </li>
+            <li>
+              <a href="#">TV프로그램</a>
+            </li>
+            <li>
+              <a href="#">영화</a>
+            </li>
+            <li>
+              <a href="#">NEW! 요즘 대세 콘텐츠</a>
+            </li>
+            <li>
+              <a href="#">내가 찜한 콘텐츠</a>
+            </li>
+          </ol>
+        </li>
+      </ul>  
+    </div>
+
+
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ---------- 메인 [영상출력] ---------- -->
+  <main id="main" class="part">
+
+
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ---------- 하단 [주소,SNS] ---------- -->
+  <footer id="info" class="part">
+
+
+
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
   
+
+  <!-- <div id="screen">
+    <iframe id="vid" src="https://www.youtube.com/embed/2hnkUpo_2yg?autoplay=1&loop=1&playlist=2hnkUpo_2yg"
+        allow="autoplay"></iframe>
+</div> -->
 </body>
 </html>

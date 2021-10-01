@@ -1,11 +1,36 @@
 @charset "utf-8";
 /* Netflix-intro 페이지 [intro.css] */
 
+@import url(reset.css);
+
 html, body { 
   height: 100%;
   background: #000;
 }
 
-#introMov {
-  left: 50%;
+#intro {
+  position: relative;
+  height: 100%;
 }
+
+.mv {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.click {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: rgb(156, 156, 156, 0.5);
+  font-weight: bold;
+  font-size: 1.7em;
+  line-height: 1450px;
+}
+
+
