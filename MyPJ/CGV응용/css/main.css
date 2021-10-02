@@ -7,110 +7,259 @@
 
 body {
     background-color: #000;
+    overflow-x: hidden;
 }
 
 .part {
-    width: 1200px;
+    width: 1500px;
     margin: 0 auto;
-    outline: 3px solid orange;
+    /* outline: 3px solid orange; */
 }
 
-/* ************ 상단 [로고,전체메뉴] ************ */
+
+
+
+/* ************ 상단 [로고, 메뉴] ************ */
 
 #top {
+    /* 상단 범위 잡아주기 */
     position: relative;
-    height: 200px;
+    height: 210px;
     /* background-color: #fff;  */
 }
 
+#gnb {
+    /* 메뉴 중앙 정렬 */
+    position: absolute;
+    left: 50%;
+}
 
 .logo {
-    /* 로고 이미지 크기 */
-    width: 120px;
+    /* 로고 이미지 */
+    width: 70px;
     padding-top: 20px;
 }
 
-/* ul::after, ol::after{
-    content: '';
-    display: block;
-    clear: both;
-  } */
-
-#gnb:hover #smenu li{
-    width: 600px;
-    margin-left: -240px;
-    
+#smenu {
+    /* 메뉴 중 ol (ul>li>ol) */
+    position: absolute;
+    top: 150px;
+    width: 1000px;
+    /* 평소엔 숨기고있기 (마우스 오버시 보이기) */
+    height: 0;
+    overflow: hidden;
+    /* 서브메뉴 꾸미기 */
+    margin-left: -500px;
+    border-radius: 5px;
+    background-color: rgba(56, 56, 56, 0.5);
+    transition: height .6s ease-out;
+    /* 서브메뉴 가로세로 중앙정렬 */
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
 }
-
-
-/* #smenu li {
-    float: left;
-    
-} */
-
 
 #smenu a {
     color: #ffffff90;
-    font-size: 1.5em;
+    font-size: 1.3em;
+}
+
+#gnb:hover #smenu {
+    /* 마우스 오버시 메뉴 */
+    width: 1000px;
+    height: 50px;
+    margin-left: -500px;
+    border-radius: 5px;
+}
+
+#smenu li:hover a{
+    color: #fff;
+    font-weight: bold;
 }
 
 
-#nav {
+
+
+
+/* ************ 메인 [영상출력] ************ */
+
+#main {
     position: relative;
-    /* #gnb의 부모 */
-}
-
-
-#gnb {
-    position: absolute;
-    /* #nav의 자식 */
-    left: 50%;
-    top: 50%;
-    /* transform: translate(-50%, -50%); */
-    
-}
-
-
-.logo::before {
-    content: '';
-    /* display: block; */
-    position: absolute;
-    top: 140px;
     width: 100%;
-    height: 0; 
-    background-color: rgba(56, 56, 56, 0.5);
-    transition: height .6s ease-out;
-    border-radius: 5px;
-  } 
-
-.logo:hover::before {
-    height: 60px;
-    border-radius: 5px;
+    height: 80vh;
 }
 
-/* 서브메뉴 */
-#gnb #smenu li {
+#screen {
     position: absolute;
-    top: 140px;
-    
     width: 100%;
-    background-color: rgba(56, 56, 56, 0.5);
-    height: 0;
-    overflow: hidden;
-    border-radius: 5px;
+    height: 100%;
+}
 
-    /* 트랜지션: 속시이지 */
-    transition: height .6s ease-out;
+#screen iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* 영상 선택 메뉴 */
+
+#mlist {
+    position: relative;
+    height: 500px;
+    padding-top: 100px;
+}
+
+#mlist ul {
+    /* 영상 리스트 */
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#mlist img {
+    width: 280px;
+    height: 400px;
+}
+
+
+/* 영상 정보 */
+.mtxt {
+    position: absolute;
+    width: 280px;
+    height: 400px;
+    display: none;
+    
+    font-size: 1.2em;
+    color: #fff;
+    text-align: center;
+    background: #00000080;
+}
+
+
+.mtxt li {
+    margin: 30px;
   }
 
-#gnb:hover #smenu li {
-    height: 60px;
+.mtxt li:first-child {
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-top: 150px;
+
+}
+
+
+
+#mlist>ul>li:hover .mtxt {
+    display: block;
+    top: 0;
 }
 
 
 
 
 
+/*  연령별 글자색 다르게는 다음에 JS로 수정해보기 */
+.mtxt .a {
+    color: rgb(255, 112, 16);
+}
+.mtxt .b {
+    color: orange;
+}
+.mtxt .c {
+    color: red;
+}
+.mtxt .d {
+    color: green;
+}
+/* ******************************************** */
+
+
+
+
+
+
+/* ************ 하단 [주소,SNS] ************ */
+
+#info {
+    position: relative;
+    height: 200px;
+    /* background-color: #fff; */
+}
+
+#info address {
+    color: #fff;
+    font-size: 1.3em;
+    font-style: normal;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+#info img {
+    height: 50px;
+    margin: 80px;
+    float: left;
+}
+
+
+
+/* SNS */
+.sns {
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    margin: 30px;
+}
+
+
+.sns li {
+    width: 40px;
+    height: 39px;
+    background: url(../image/sns_logos.png) no-repeat;
+    filter: grayscale(100%);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* 마우스 올리면 컬러 보이기 */
+.sns li:hover {
+    filter: grayscale(0);
+}
+
+/* 아이콘별 위치 설정 */
+.sns li:first-child {
+    background-position: 0 0;
+}
+
+.sns li:nth-child(2) {
+    background-position: 0 -53px;
+}
+
+.sns li:nth-child(3) {
+    background-position: 0 -106px;
+}
+
+.sns li:last-child {
+    background-position: 0 -159px;
+}
+
+
+.sns a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 글자는 숨기기 */
+.bld {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
 
 
 
