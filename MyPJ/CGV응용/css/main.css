@@ -191,7 +191,7 @@ body {
 }
 
 #info address {
-    color: #fff;
+    color: rgb(163, 163, 163);
     font-size: 1.3em;
     font-style: normal;
     padding-top: 20px;
