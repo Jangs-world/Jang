@@ -6,6 +6,11 @@
 @import url(core.css);
 @import url(common.css);
 
+/* 메인 페이지 공통 */
+.bgc {
+    background-color: #f9f9f9;
+}
+
 
 /*************** 2. 메인영역 ******************/
 .cont>div {
@@ -93,7 +98,3 @@
     /* height: 650px; */
 }
 
-/***************** 3. 하단영역 *********************/
-.info {
-    height: 285px;
-}
