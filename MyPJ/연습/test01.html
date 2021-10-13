@@ -40,12 +40,16 @@
         }, 10);
 
         $(window).on("wheel", function (e) {
-            if ($html.is(":animated")) return;
+            if ($html.is(":animated")) 
+                return;
+
             if (e.originalEvent.deltaY > 0) {
-                if (page == 4) return;
+                if (page == 4) 
+                    return;
                 page++;
             } else if (e.originalEvent.deltaY < 0) {
-                if (page == 1) return;
+                if (page == 1) 
+                    return;
                 page--;
             }
             var posTop = (page - 1) * $(window).height();
