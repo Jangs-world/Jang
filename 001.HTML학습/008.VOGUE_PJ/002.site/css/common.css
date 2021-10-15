@@ -122,7 +122,7 @@
 .smsub {
   position: absolute;
   /* 젠틀앱솔루트! */
-  width: 118px;
+  width: 120px;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   /* 보더, 패딩 포함 크기유지박스 */
@@ -277,7 +277,7 @@
 }
 
 #top.on .gnb ul{
-  max-width: 630px;
+  max-width: 631px;
   /* 로고와 겹치지 않게 기본크기 축소 */
 }
 
@@ -360,6 +360,9 @@
 
   /* 트랜지션 :속시이지 */
   transition: all .3s ease-in-out 0s;
+
+  display: none;
+  /* 처음에 안보임 */
 }
 
 /* 탑버튼 마우스 오버시 */

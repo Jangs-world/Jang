@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이폰돌아간다아</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 0;
+      height: 100%;
+      /* 보이는 화면 채우기 */
+      overflow: hidden;
+      /* 넘치는 요소 숨기기, 스크롤 없앰 */
+    }
+
+    .ip {
+      position: relative;
+      top: 20%; /* body 부모 기준 */
+      width: 200px;
+      height: 400px;
+      outline: 2px solid salmon;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+
+      /* 3D 설정 */
+      transform-style: preserve-3d;
+      transform: rotateX(10deg) rotateY(30deg);
+    }
+
+    /* 공통요소 */
+    .ip li {
+      position: absolute;
+      width: 200px;
+      height: 400px;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    /* 앞면 */
+    .ip li:first-child {
+      background: url(images/ip01.png);
+      transform: translateZ(20px);
+      display: none;
+    }
+
+    /* 왼쪽면 */
+    .ip li:nth-child(2){
+      left: -10px;
+      width: 20px;
+      background-image: url(images/ip04.png);
+      transform: rotateY(-90deg);
+    }
+
+
+  </style>
+</head>
+<body>
+
+
+  <!-- 흘러가는 글자박스 -->
+  <div class="ftxt">
+    <div class="tbx">
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+    </div>
+    <div class="tbx">
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+      <span>iPhone 2021 </span>
+    </div>
+  </div>
+
+  <!-- 회전하는 폰 -->
+  <ul class="ip">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  
+</body>
+</html>
