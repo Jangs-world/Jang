@@ -25,6 +25,7 @@
 .lnb ul {
     display: flex;
     /* 플렉스 박스 */
+    flex-wrap: wrap;
     justify-content: center;
     /* 가로 컨텐츠 중앙 */
 }

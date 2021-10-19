@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* 보그 메인 미디어 쿼리 - media.css */
+
+/* 1024px 이하 */
+@media only screen and (max-width:1024px) {
+  
+  /* 컨텐츠 박스 타이틀 h2요소 */
+  .cbx h2 {
+    font-size: 3vw;
+    padding: 5vw;
+  }
+  /* 보이는 화면 기준 뷰포트 단위사용! vw */
+  
+}
+/* 1024px 이하 */
+
+/* 500px 이하 */
+@media only screen and (max-width:500px) {
+
+  /* 1. 상단영역고정 */
+  #top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: #fff;
+  }
+
+  /* 2. 상단메뉴, GNB메뉴 숨기기 */
+  .tmenu, .gnb {
+    display: none;
+  }
+
+  /* 3. 로고박스 + 로고이미지 */
+  .logo {
+    padding: 10px;
+  }
+
+  .logo img {
+    width: 130px;
+  }
+
+  /* 4. 상단영역 - 최소높이 없앰 */
+  .top {
+    min-height: auto;
+  }
+
+  /* 5. 모바일 전용 버튼 보이기 */
+  .mobtn {
+    display: block;
+  }
+
+  
+}
+/* 500px 이하 */
