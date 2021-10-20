@@ -16,6 +16,11 @@ p {
     padding: 0;
 }
 
+/* 가로스크롤 숨기기 - 옆에공간이 나오는 경우 막기 */
+html, body {
+    overflow-x: hidden;
+}
+
 ol,
 ul {
     list-style: none;
