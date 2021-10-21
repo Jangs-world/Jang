@@ -40,9 +40,8 @@
         }, 10);
 
         $(window).on("wheel", function (e) {
-            if ($html.is(":animated")) 
+            if ($html.is(":animated"))
                 return;
-
             if (e.originalEvent.deltaY > 0) {
                 if (page == 4) 
                     return;
