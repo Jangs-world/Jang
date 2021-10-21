@@ -124,7 +124,7 @@
 .smsub {
   position: absolute;
   /* 젠틀앱솔루트! */
-  width: 120px;
+  width: 125px;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   /* 보더, 패딩 포함 크기유지박스 */
