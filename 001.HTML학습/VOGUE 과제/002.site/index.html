@@ -13,8 +13,22 @@
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
-  <script src="js/linksys.js"></script>
   <script src="js/common.js"></script>
+  <script>
+    
+    // 서브페이지를 삭제했으므로 로고 외 나머지 링크들은 삭제함
+    $(function () {
+
+      $(".logo a").click(function () {
+        location.href = "index.html";
+      });
+
+      $(".gnb a, .mognb a").click(function (e) {
+        e.preventDefault();
+      });
+
+    });
+  </script>
 </head>
 
 <body>
@@ -50,29 +64,6 @@
               카카오스토리
             </span>
           </a>
-        </div>
-        <!-- 1-1-2.사이드메뉴 -->
-        <div class="sideMenu">
-          <ul class="smbx">
-            <li>
-              <a href="#">SIDE MENU</a>
-              <!-- 서브메뉴 -->
-              <ol class="smsub">
-                <li>
-                  <a href="#">회사 소개</a>
-                </li>
-                <li>
-                  <a href="#">광고 및 제휴</a>
-                </li>
-                <li>
-                  <a href="#">개인정보 처리방침</a>
-                </li>
-              </ol>
-            </li>
-            <li>
-              <a href="#">SUBSCRIBE</a>
-            </li>
-          </ul>
         </div>
       </div>
 
@@ -216,7 +207,7 @@
     </div>
   </div>
 
-  
+
   <!-- 2. 메인영역 -->
   <div class="bgc">
     <main class="cont ibx">
