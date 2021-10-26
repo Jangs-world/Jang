@@ -18,6 +18,10 @@
 </head>
 
 <body>
+  <!-- 로그인세션 -->
+  <?php include "inc/login_session.inc" ?>
+
+  
   <!-- 1. 상단영역 -->
   <div id="top">
     <?php include "inc/top.inc" ?>

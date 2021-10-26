@@ -59,9 +59,17 @@ $(function () { ///////////// jQB //////////////////////////////////
   let scnt = slide.find("li").length;
   // consol.log("슬수: " + scnt);
 
+  // 자동넘김지우기는 드래그시작이벤트(dragstart)에서
+  // 해줘야 미리 끊어줄 수 있다~!
+  slide.on("dragstart",()=>{clearAuto();});
+
   // 대상: .slide -> slide변수에 할당
   // 이벤트: dragstop -> 드래그가 끝날때
   slide.on("dragstop", function () {
+
+    // 자동넘김 지우기
+    clearAuto();
+
 
     // 광드래그 막기 커버보이기
     cover.show();
@@ -95,6 +103,10 @@ $(function () { ///////////// jQB //////////////////////////////////
         // 광드래그 커버 지우기
         cover.hide();
 
+        // 배너글자 등장함수 호출!
+        showTxt();
+        // 아랫쪽의 sno변경이 먼저 이루어짐!
+
       }); /////// animate ////////////
 
       // 블릿순번 변경하기 : 오른쪽이동은 증가!
@@ -127,6 +139,10 @@ $(function () { ///////////// jQB //////////////////////////////////
 
         // 광드래그 커버 지우기
         cover.hide();
+
+        // 배너글자 등장함수 호출!
+        showTxt();
+        // 아랫쪽의 sno변경이 먼저 이루어짐!
 
       }); ///// animate ///////
 
@@ -165,9 +181,142 @@ $(function () { ///////////// jQB //////////////////////////////////
   let chgIndic = () => {
     // 블릿 변경하기 : .bindic li -> indic변수
     indic.eq(sno).addClass("on")
-    .siblings().removeClass("on");
+      .siblings().removeClass("on");
     // consol.log("블순: " + sno);
   }; //////// chgIndic 함수 ////////
+
+
+  ////// 배너등장텍스트 //////////
+  let banTxt = [
+    "Men's Season<br>Collection",
+    "2021 Special<br>Collection",
+    "GongYoo<br>Collection",
+    "T-Shirt<br>Collection",
+    "Shoes<br>Collection",
+    "Wind Jacket<br>Collection",
+  ];
+
+  /////////// 배너글자 등장 함수 /////////////////////
+  let showTxt = () => {
+
+    // console.log("슬순: " + sno);
+
+    // 0. 있을 수 있는 .btit박스 지우기!
+    $(".btit").remove();
+
+    // 1. 배너글자 박스 넣기
+    // 대상: .slide li -> 항상 두번째 슬라이드임!
+    slide.find("li").eq(1).append('<h2 class="btit"></h2>');
+
+    // 배너화면 구성상 왼쪽과 오른쪽으로 글자 위치조정
+    // sno 순번 1,2만 오른쪽
+    // left value 즉, left값을 변수로 처리!
+    let lval = "30%"; // 왼쪽설정값
+    if (sno === 1 || sno === 2) lval = "70%"; // 오른쪽설정값
+
+    // 2. 배너글자박스 CSS
+    $(".btit") // 주인공!!
+      .css({
+        position: "absolute",
+        top: "55%", // 아래쪽으로 살짝 내려감! (올라올예정!)
+        left: lval, // 변수로 처리!
+        Transform: "translate(-50%, -50%)",
+        font: "bold 4.5vmax Verdana",
+        color: "#fff",
+        textShadow: "1px 1px 3px #777",
+        whiteSpace: "nowrap",
+        opacity: 0 // 투명도(문자형/숫자형 모두가능/단위가있는건써야함)
+      }) /////// css //////////
+
+      // 3. 글자넣기 - 주인공에서 이어짐!
+      .html(banTxt[sno])
+
+      // 4.애니메이션 등장하기 - 주인공에서 이어짐!
+      .animate({
+        top: "50%",
+        opacity: 1
+      }, 1000, "easeInOutQuart");
+
+  }; //////// showTxt 함수 /////////////
+  /////////////////////////////////////
+
+  // 배너텍스트 등장함수 최초호출!
+  showTxt();
+
+  /////////////////////////////////////////////
+  // 배너 자동 넘기기 함수 : 오른쪽에서 들어옴! //
+  /////////////////////////////////////////////
+  let goSlide = () => {
+
+    // 광드래그 막기 커버보이기
+    cover.show();
+
+    // 슬라이드가 -200% 위치로 이동한다!
+    // stop() 메서드는 animate가 큐에 쌓이는 것을 막는다!
+    slide.stop().animate({
+      left: -win * 2 + "px"
+    }, 600, easing, function () { //콜백함수(이동후)
+      // 변경대상: .slide -> slide변수
+      slide
+        // 첫번째 슬라이드 li를 맨뒤로 보내기
+        .append(slide.find("li").first())
+        // 이때 left값을 -100%위치로 고정해야함!
+        .css({
+          left: -win + "px"
+        });
+
+      // 광드래그 커버 지우기
+      cover.hide();
+
+      // 배너글자 등장함수 호출!
+      showTxt();
+      // 아랫쪽의 sno변경이 먼저 이루어짐!
+
+    }); /////// animate ////////////
+
+    // 블릿순번 변경하기 : 오른쪽이동은 증가!
+    sno++;
+    // 한계수
+    if (sno === scnt) sno = 0;
+    // 블릿변경함수 호출
+    chgIndic();
+
+  }; ////////// goSlide 함수 ///////////////////
+  //////////////////////////////////////////////
+
+  // 인터발용 변수 : 지우기용
+  let autoI;
+  
+  ////////////////////////////////////////
+  /////////// 자동인터벌호출함수 ///////////
+  ////////////////////////////////////////
+  let autoSlide = () => {
+    autoI = setInterval(goSlide,2500);
+    // 2.5초 간격으로 goSlide함수를 호출 !
+  }; ///////// autoSlide함수 ////////
+
+  // 인터발 최초호출!
+  autoSlide();
+
+  // 타임아웃용변수 : 지우기위함
+  let autoT;
+
+  ///////////////////////////////////////
+  // 인터벌지우기함수 + 안건들면 다시호출 //
+  ///////////////////////////////////////
+  let clearAuto = () => {
+
+    // 1. 인터벌지우기
+    clearInterval(autoI);
+
+    // 2. 타임아웃지우기(실행쓰나미방지!)
+    clearTimeout(autoT);
+    
+    // 3. 일정시간 뒤 다시 인터발 호출!
+    autoT = setTimeout(autoSlide, 2500);
+    // 2.5초동안 기다렸다가 다시 인터발함수 호출!
+  }; ///////// autoClear함수 ////////
+
 
 
 

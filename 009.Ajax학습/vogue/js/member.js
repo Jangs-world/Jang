@@ -87,9 +87,67 @@ $(function () { /////////// jQB //////////////////
 
         } ////// if문 : 결과가 false일때 ////////
         else {
-          $(this).siblings(".msg")
-            .text("훌륭한 아이디네요!")
-            .addClass("on"); // 글자색변경 class
+
+          /* 
+              [ AJAX로 중복 아이디 검사하기! ]
+              ajax 처리 유형 2가지
+
+              1) post 방식 처리 메서드
+              - $.post(URL, data, callback)
+
+              2) get방식 처리 메서드
+              - $.get(URL, callback)
+
+              3) 위의 2가지 유형 중 선택처리 메서드
+              - $.ajax(전송할 페이지, 전송방식, 보낼 데이터,
+                       전송할 데이터 타입, 비동기옵션, 성공처리, 실패처리 )
+          */
+
+          $.ajax({
+
+            // 1. 전송할 페이지
+            url: "process/chkID.php",
+
+            // 2. 전송방식(get,post)
+            type: "post",
+
+            // 3. 보낼 데이터
+            data: {
+              "mid": $("#mid").val()
+            },
+
+            // 4. 전송할 데이터 타입
+            dataType:"html",
+
+            // 5. 비동기옵션(false로 해야 JS파일의 전역변수를 여기에서 사용가능함!)
+            //    -> 여기서는 pass를 쓰기위함 
+            async: false,
+
+            // 6. 성공처리
+            success: function (res) {
+              // alert(res);
+              if(res === "ok") { // DB에 중복된 아이디가 없는경우
+                $("#mid").siblings(".msg").text("훌륭한 아이디네요~!").addClass("on");
+              } ///// if ////////
+
+              else { // DB에 이미 중복된 아이디가 있는경우
+                $("#mid").siblings(".msg").text("사용중인 ID입니다.").removeClass("on");
+
+                // 통과여부 
+                pass =  false;
+              } ////// else //////////
+            },   /////// success 함수 ////////////
+
+            // 7. 실패처리
+            // xhr - XMLHttpRequest객체
+            // status - 실패상태코드번호
+            // error - 에러결과값
+            error: function(xhr,status,error){
+              alert("연결실행실패:" +error);
+            } ////// error함수 //////////////
+
+          }); /////////////////// ajax메소드 ////////////////
+
         } ////// else문 : 결과가 true일때 //////////
 
       } ///////// else if문 : 아이디일때 //////////////
@@ -397,7 +455,6 @@ $(function () { /////////// jQB //////////////////
             */
 
           } ////// if문: 성공시 ///////////
-
           else {
             // 실패메시지 찍기
             alert(res);
