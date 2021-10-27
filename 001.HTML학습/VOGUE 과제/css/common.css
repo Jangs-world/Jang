@@ -144,7 +144,7 @@
   left: 0;
   width: 100%;
   /* 내용만큼 줄어드니까 width는 100% */
-  background-color: #fff;
+  background-color: #000(177, 140, 140);
 }
 
 /* 속박스 */
@@ -189,11 +189,11 @@
 }
 
 #top.on .gnb li a{
-  color: #333;
+  color: rgb(139, 139, 139);
 }
 
 #top.on .gnb li a:hover{
-  color: red;
+  color: #fff;
 }
 
 
